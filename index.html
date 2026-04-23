@@ -698,7 +698,7 @@ const DEFAULT_DATA = {
   ],
   projects: [
     { title: "Intelligent Data Analysis & Prediction System", tech: "Django · Python · ML · Data Visualization", emoji: "🧠", gradient: "project-thumb-1", desc: "Scalable web app processing datasets with real-time statistical computations and interactive visual dashboards." },
-    { title: "OpenAI Chatbot", tech: "HTML · CSS · JavaScript · Node.js · OpenAI API", emoji: "🤖", gradient: "project-thumb-2", desc: "AI chatbot responding to user queries in real time using OpenAI API integration." },
+    { title: "File Sharing and Notes System", tech: "HTML · CSS · JavaScript · Python · Django", emoji: "📝", gradient: "project-thumb-2", desc: "AI chatbot responding to user queries in real time using OpenAI API integration." },
     { title: "Personal Portfolio Website", tech: "HTML · CSS · JavaScript", emoji: "🎨", gradient: "project-thumb-3", desc: "Responsive portfolio website showcasing projects, skills, and contact details." }
   ],
   certs: [
@@ -761,7 +761,7 @@ function render() {
   const grid = document.getElementById('projectsGrid');
   grid.innerHTML = '';
   const gradients = ['project-thumb-1','project-thumb-2','project-thumb-3'];
-  const emojis = ['🧠','🤖','🎨','💡','🌐'];
+  const emojis = ['🧠','📝','🎨','💡','🌐'];
   DATA.projects.forEach((p, i) => {
     const card = document.createElement('div');
     card.className = 'project-card';
