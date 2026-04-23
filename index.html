@@ -1,0 +1,990 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lalli Sree S — Full Stack Developer</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f7f5f0;
+    --surface: #ffffff;
+    --ink: #1a1a1a;
+    --ink-muted: #6b6b6b;
+    --accent: #2d5a3d;
+    --accent-light: #e8f0eb;
+    --accent2: #c17f3a;
+    --border: #e0ddd7;
+    --tag-bg: #f0ede8;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  /* ========== LAYOUT ========== */
+  .page-wrap {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* ========== HERO ========== */
+  .hero-banner {
+    width: 100%;
+    height: 260px;
+    background: linear-gradient(135deg, #1a2e22 0%, #2d5a3d 40%, #4a8c5c 70%, #c17f3a 100%);
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-banner::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Ccircle cx='30' cy='30' r='1.5' fill='rgba(255,255,255,0.08)'/%3E%3C/svg%3E") repeat;
+  }
+  .hero-banner-text {
+    position: absolute;
+    bottom: 28px;
+    right: 36px;
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    color: rgba(255,255,255,0.25);
+    font-size: 13px;
+    letter-spacing: 0.12em;
+  }
+
+  .profile-area {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 32px;
+  }
+  .profile-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    align-items: flex-end;
+    gap: 24px;
+    margin-top: -48px;
+    position: relative;
+  }
+  .avatar {
+    width: 96px;
+    height: 96px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    border: 4px solid var(--surface);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 36px;
+    color: white;
+    flex-shrink: 0;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+  }
+  .profile-info {
+    flex: 1;
+    padding-top: 48px;
+  }
+  .profile-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--ink);
+  }
+  .profile-title {
+    color: var(--accent);
+    font-weight: 500;
+    font-size: 14px;
+    margin-top: 2px;
+  }
+  .profile-location {
+    color: var(--ink-muted);
+    font-size: 13px;
+    margin-top: 4px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .profile-actions {
+    display: flex;
+    gap: 10px;
+    padding-top: 48px;
+    align-items: flex-start;
+  }
+  .btn-primary {
+    background: var(--ink);
+    color: white;
+    border: none;
+    padding: 9px 20px;
+    border-radius: 24px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+  .btn-primary:hover { background: var(--accent); }
+  .social-links {
+    display: flex;
+    gap: 8px;
+  }
+  .social-btn {
+    width: 36px;
+    height: 36px;
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 14px;
+    text-decoration: none;
+    color: var(--ink);
+    background: var(--surface);
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .social-btn:hover { border-color: var(--accent); background: var(--accent-light); }
+
+  /* ========== SECTIONS ========== */
+  .main-content { background: var(--bg); }
+  .section-block {
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    margin-top: 16px;
+  }
+  .section-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 24px;
+  }
+  .section-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    margin-bottom: 20px;
+  }
+  .about-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    line-height: 1.55;
+    color: var(--ink);
+    max-width: 680px;
+  }
+  .about-sub {
+    color: var(--ink-muted);
+    margin-top: 12px;
+    font-size: 15px;
+    max-width: 600px;
+  }
+
+  /* Tags */
+  .tags-group { margin-top: 28px; }
+  .tags-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    margin-bottom: 12px;
+  }
+  .tags-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .tag {
+    padding: 6px 14px;
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    font-size: 13px;
+    color: var(--ink);
+    background: var(--tag-bg);
+  }
+
+  /* Projects grid */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-top: 16px;
+  }
+  .project-card {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    background: var(--bg);
+    transition: box-shadow 0.2s;
+  }
+  .project-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+  .project-thumb {
+    height: 160px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 48px;
+    position: relative;
+    overflow: hidden;
+  }
+  .project-thumb-1 { background: linear-gradient(135deg, #1a2e22, #4a8c5c); }
+  .project-thumb-2 { background: linear-gradient(135deg, #1a1a2e, #3a3a8c); }
+  .project-thumb-3 { background: linear-gradient(135deg, #2e1a1a, #8c4a4a); }
+  .project-info { padding: 16px; }
+  .project-title { font-weight: 600; font-size: 15px; }
+  .project-tech { color: var(--ink-muted); font-size: 12px; margin-top: 4px; }
+
+  /* Experience */
+  .exp-item {
+    padding: 28px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .exp-item:last-child { border-bottom: none; }
+  .exp-logo {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    background: var(--accent-light);
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    margin-bottom: 12px;
+  }
+  .exp-header { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+  .exp-title { font-weight: 600; font-size: 16px; }
+  .exp-date {
+    background: var(--tag-bg);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 4px 12px;
+    font-size: 12px;
+    color: var(--ink-muted);
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .exp-bullets {
+    margin-top: 12px;
+    padding-left: 16px;
+    list-style: disc;
+    color: var(--ink-muted);
+    font-size: 14px;
+  }
+  .exp-bullets li { margin-top: 4px; }
+
+  /* Education timeline */
+  .edu-timeline { position: relative; padding-left: 24px; }
+  .edu-timeline::before {
+    content: '';
+    position: absolute;
+    left: 3px;
+    top: 8px;
+    bottom: 8px;
+    width: 1px;
+    background: var(--border);
+  }
+  .edu-item { display: grid; grid-template-columns: 140px 1fr; gap: 24px; margin-bottom: 28px; align-items: start; }
+  .edu-date { color: var(--ink-muted); font-size: 13px; text-align: right; padding-top: 2px; font-family: 'JetBrains Mono', monospace; font-size: 11px; }
+  .edu-dot {
+    width: 8px;
+    height: 8px;
+    background: var(--ink);
+    border-radius: 50%;
+    position: absolute;
+    left: 0;
+    margin-top: 6px;
+  }
+  .edu-title { font-weight: 600; font-size: 15px; }
+  .edu-school { color: var(--ink-muted); font-size: 13px; margin-top: 2px; }
+
+  /* Links section */
+  .links-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
+  .links-col { padding-right: 32px; }
+  .links-col:last-child { padding-right: 0; padding-left: 32px; border-left: 1px solid var(--border); }
+  .link-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    text-decoration: none;
+    color: var(--ink);
+    font-weight: 500;
+    font-size: 15px;
+    transition: color 0.2s;
+  }
+  .link-item:last-child { border-bottom: none; }
+  .link-item:hover { color: var(--accent); }
+  .link-badge {
+    background: var(--tag-bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 2px 8px;
+    font-size: 11px;
+    color: var(--ink-muted);
+  }
+
+  /* Footer */
+  footer {
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    text-align: center;
+    padding: 24px;
+    font-size: 13px;
+    color: var(--ink-muted);
+    margin-top: 16px;
+  }
+
+  /* ========== ADMIN PANEL ========== */
+  #admin-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 1000;
+    backdrop-filter: blur(4px);
+  }
+  #admin-overlay.open { display: flex; }
+  #admin-panel {
+    background: #0f1a13;
+    color: #d4e8d8;
+    width: 480px;
+    height: 100vh;
+    overflow-y: auto;
+    margin-left: auto;
+    padding: 32px 28px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+  }
+  .admin-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 28px;
+  }
+  .admin-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    color: #a8d4b4;
+    font-style: italic;
+  }
+  .admin-close {
+    background: none;
+    border: 1px solid #2d5a3d;
+    color: #d4e8d8;
+    cursor: pointer;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+  }
+  .admin-close:hover { background: #2d5a3d; }
+  .admin-section {
+    margin-bottom: 28px;
+    border-top: 1px solid #1e3326;
+    padding-top: 20px;
+  }
+  .admin-section-title {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #4a8c5c;
+    margin-bottom: 14px;
+  }
+  .admin-field { margin-bottom: 14px; }
+  .admin-label { font-size: 11px; color: #6aab7a; margin-bottom: 4px; display: block; }
+  .admin-input, .admin-textarea {
+    width: 100%;
+    background: #0a1209;
+    border: 1px solid #1e3326;
+    color: #d4e8d8;
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .admin-input:focus, .admin-textarea:focus { border-color: #4a8c5c; }
+  .admin-textarea { resize: vertical; min-height: 70px; }
+  .admin-save-btn {
+    width: 100%;
+    background: #2d5a3d;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 4px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    cursor: pointer;
+    margin-top: 8px;
+    letter-spacing: 0.05em;
+    transition: background 0.2s;
+  }
+  .admin-save-btn:hover { background: #4a8c5c; }
+  .admin-status {
+    text-align: center;
+    font-size: 11px;
+    color: #4a8c5c;
+    margin-top: 8px;
+    height: 16px;
+  }
+
+  /* Tags admin */
+  .tag-list-admin { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px; }
+  .tag-admin {
+    background: #1e3326;
+    border: 1px solid #2d5a3d;
+    border-radius: 12px;
+    padding: 3px 10px;
+    font-size: 11px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: #d4e8d8;
+  }
+  .tag-admin-remove {
+    background: none;
+    border: none;
+    color: #6aab7a;
+    cursor: pointer;
+    font-size: 12px;
+    padding: 0;
+    line-height: 1;
+  }
+  .tag-add-row { display: flex; gap: 6px; }
+  .tag-add-btn {
+    background: #1e3326;
+    border: 1px solid #2d5a3d;
+    color: #d4e8d8;
+    padding: 7px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    white-space: nowrap;
+  }
+  .tag-add-btn:hover { background: #2d5a3d; }
+
+  /* Project admin item */
+  .project-admin-item {
+    background: #0a1209;
+    border: 1px solid #1e3326;
+    border-radius: 6px;
+    padding: 12px;
+    margin-bottom: 10px;
+  }
+  .project-admin-item .admin-input { margin-bottom: 6px; }
+
+  @media (max-width: 640px) {
+    .profile-inner { flex-direction: column; align-items: flex-start; }
+    .profile-actions { padding-top: 0; }
+    .projects-grid { grid-template-columns: 1fr; }
+    .links-grid { grid-template-columns: 1fr; }
+    .links-col:last-child { padding-left: 0; border-left: none; padding-top: 16px; border-top: 1px solid var(--border); }
+    .edu-item { grid-template-columns: 1fr; }
+    #admin-panel { width: 100vw; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== PORTFOLIO ===== -->
+<div class="hero-banner">
+  <div class="hero-banner-text">full stack developer · 2026</div>
+</div>
+
+<div class="profile-area">
+  <div class="profile-inner">
+    <div class="avatar" id="avatarEl">L</div>
+    <div class="profile-info">
+      <div class="profile-name" id="profileName">Lalli Sree S</div>
+      <div class="profile-title" id="profileTitle">Aspiring Full Stack Developer</div>
+      <div class="profile-location">📍 <span id="profileLocation">Tirupattur, Tamil Nadu</span></div>
+    </div>
+    <div class="profile-actions">
+      <div class="social-links">
+        <a class="social-btn" id="socialGithub" href="https://github.com/lallisree" target="_blank" title="GitHub">
+          <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+        </a>
+        <a class="social-btn" id="socialEmail" href="mailto:lallisree5@gmail.com" title="Email">✉</a>
+      </div>
+      <a class="btn-primary" href="mailto:lallisree5@gmail.com">⚡ Get in touch</a>
+    </div>
+  </div>
+</div>
+
+<div class="main-content">
+
+  <!-- ABOUT -->
+  <div class="section-block">
+    <div class="section-inner">
+      <div class="section-label">About Me</div>
+      <div class="about-text" id="aboutText">
+        Hey there. I'm Lalli Sree — Full Stack Developer pursuing B.Sc. Computer Science at Sacred Heart College, building scalable web apps and intelligent systems.
+      </div>
+      <div class="about-sub" id="aboutSub">
+        Skilled in MEAN Stack, Python, Django, and MySQL. Passionate about responsive design and modern technologies.
+      </div>
+
+      <div class="tags-group">
+        <div class="tags-label">Skills</div>
+        <div class="tags-row" id="skillsRow"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROJECTS -->
+  <div class="section-block">
+    <div class="section-inner">
+      <div class="section-label">Featured Work</div>
+      <div class="projects-grid" id="projectsGrid"></div>
+    </div>
+  </div>
+
+  <!-- EXPERIENCE / CERTIFICATES -->
+  <div class="section-block">
+    <div class="section-inner">
+      <div class="section-label">Certificates & Achievements</div>
+      <div id="certsContainer"></div>
+    </div>
+  </div>
+
+  <!-- EDUCATION -->
+  <div class="section-block">
+    <div class="section-inner">
+      <div class="section-label">Education</div>
+      <div class="edu-timeline" id="eduTimeline"></div>
+    </div>
+  </div>
+
+  <!-- LINKS -->
+  <div class="section-block">
+    <div class="section-inner">
+      <div class="section-label">Links & Interests</div>
+      <div class="links-grid">
+        <div class="links-col" id="caseStudiesCol"></div>
+        <div class="links-col" id="sideProjectsCol"></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <span id="footerText">2026 © Lalli Sree S — All rights reserved</span>
+</footer>
+
+<!-- ===== ADMIN PANEL ===== -->
+<div id="admin-overlay">
+  <div id="admin-panel">
+    <div class="admin-header">
+      <div class="admin-title">// admin panel</div>
+      <button class="admin-close" onclick="closeAdmin()">✕ Close</button>
+    </div>
+
+    <!-- PROFILE -->
+    <div class="admin-section">
+      <div class="admin-section-title">Profile</div>
+      <div class="admin-field">
+        <label class="admin-label">Full Name</label>
+        <input class="admin-input" id="a_name" type="text">
+      </div>
+      <div class="admin-field">
+        <label class="admin-label">Title / Role</label>
+        <input class="admin-input" id="a_title" type="text">
+      </div>
+      <div class="admin-field">
+        <label class="admin-label">Location</label>
+        <input class="admin-input" id="a_location" type="text">
+      </div>
+      <div class="admin-field">
+        <label class="admin-label">Email</label>
+        <input class="admin-input" id="a_email" type="email">
+      </div>
+      <div class="admin-field">
+        <label class="admin-label">GitHub URL</label>
+        <input class="admin-input" id="a_github" type="text">
+      </div>
+    </div>
+
+    <!-- ABOUT -->
+    <div class="admin-section">
+      <div class="admin-section-title">About Me</div>
+      <div class="admin-field">
+        <label class="admin-label">Headline (large text)</label>
+        <textarea class="admin-textarea" id="a_about"></textarea>
+      </div>
+      <div class="admin-field">
+        <label class="admin-label">Sub-text</label>
+        <textarea class="admin-textarea" id="a_aboutSub"></textarea>
+      </div>
+    </div>
+
+    <!-- SKILLS -->
+    <div class="admin-section">
+      <div class="admin-section-title">Skills / Tags</div>
+      <div class="tag-list-admin" id="admin_skills_list"></div>
+      <div class="tag-add-row">
+        <input class="admin-input" id="a_skillInput" placeholder="Add skill..." style="margin:0;">
+        <button class="tag-add-btn" onclick="addSkill()">+ Add</button>
+      </div>
+    </div>
+
+    <!-- PROJECTS -->
+    <div class="admin-section">
+      <div class="admin-section-title">Projects</div>
+      <div id="admin_projects_list"></div>
+      <button class="tag-add-btn" onclick="addProject()" style="width:100%;margin-top:6px;">+ Add Project</button>
+    </div>
+
+    <!-- CERTS -->
+    <div class="admin-section">
+      <div class="admin-section-title">Certificates & Achievements</div>
+      <div id="admin_certs_list"></div>
+      <button class="tag-add-btn" onclick="addCert()" style="width:100%;margin-top:6px;">+ Add Certificate</button>
+    </div>
+
+    <!-- EDUCATION -->
+    <div class="admin-section">
+      <div class="admin-section-title">Education</div>
+      <div id="admin_edu_list"></div>
+      <button class="tag-add-btn" onclick="addEdu()" style="width:100%;margin-top:6px;">+ Add Education</button>
+    </div>
+
+    <!-- LINKS -->
+    <div class="admin-section">
+      <div class="admin-section-title">Links (Interests / Projects)</div>
+      <div id="admin_links_list"></div>
+      <button class="tag-add-btn" onclick="addLink()" style="width:100%;margin-top:6px;">+ Add Link</button>
+    </div>
+
+    <button class="admin-save-btn" onclick="saveAll()">💾 Save All Changes</button>
+    <div class="admin-status" id="admin-status"></div>
+  </div>
+</div>
+
+<script>
+// ============================================================
+// DATA MODEL
+// ============================================================
+const DEFAULT_DATA = {
+  name: "Lalli Sree S",
+  title: "Aspiring Full Stack Developer",
+  location: "Tirupattur, Tamil Nadu",
+  email: "lallisree5@gmail.com",
+  github: "https://github.com/lallisree",
+  about: "Hey there. I'm Lalli Sree — Full Stack Developer pursuing B.Sc. Computer Science at Sacred Heart College, building scalable web apps and intelligent systems.",
+  aboutSub: "Skilled in MEAN Stack, Python, Django, and MySQL. Passionate about responsive design and modern technologies.",
+  skills: [
+    "HTML", "CSS", "Bootstrap", "JavaScript",
+    "Angular", "Node.js", "Express.js", "Django",
+    "Python", "Java", "MySQL",
+    "Android (Java/Kotlin)", "Firebase",
+    "Power BI", "VS Code", "Canva"
+  ],
+  projects: [
+    { title: "Intelligent Data Analysis & Prediction System", tech: "Django · Python · ML · Data Visualization", emoji: "🧠", gradient: "project-thumb-1", desc: "Scalable web app processing datasets with real-time statistical computations and interactive visual dashboards." },
+    { title: "OpenAI Chatbot", tech: "HTML · CSS · JavaScript · Node.js · OpenAI API", emoji: "🤖", gradient: "project-thumb-2", desc: "AI chatbot responding to user queries in real time using OpenAI API integration." },
+    { title: "Personal Portfolio Website", tech: "HTML · CSS · JavaScript", emoji: "🎨", gradient: "project-thumb-3", desc: "Responsive portfolio website showcasing projects, skills, and contact details." }
+  ],
+  certs: [
+    { text: "🥇 1st Prize — Logo Designing in Canva Editing, Sacred Heart College Competition" },
+    { text: "📋 Seminar Participant — Introduction of UI/UX Design, Sacred Heart College, Tirupattur" },
+    { text: "☁️ Seminar Participant — Cloud Computing, Sacred Heart College, Tirupattur" }
+  ],
+  education: [
+    { date: "2023 – 2026", title: "B.Sc. Computer Science", school: "Sacred Heart College (Autonomous), Thiruvalluvar University" }
+  ],
+  links: [
+    { label: "GitHub Profile", url: "https://github.com/lallisree", badge: "Open Source", col: "left" },
+    { label: "Frontend Development", url: "#", badge: "Interest", col: "right" },
+    { label: "Web App Development", url: "#", badge: "Interest", col: "right" },
+    { label: "Problem Solving", url: "#", badge: "Interest", col: "right" },
+    { label: "Emerging Technologies", url: "#", badge: "Interest", col: "right" }
+  ]
+};
+
+let DATA = {};
+
+function loadData() {
+  try {
+    const saved = localStorage.getItem('portfolio_data');
+    DATA = saved ? JSON.parse(saved) : JSON.parse(JSON.stringify(DEFAULT_DATA));
+  } catch(e) {
+    DATA = JSON.parse(JSON.stringify(DEFAULT_DATA));
+  }
+}
+
+function saveData() {
+  localStorage.setItem('portfolio_data', JSON.stringify(DATA));
+}
+
+// ============================================================
+// RENDER PORTFOLIO
+// ============================================================
+function render() {
+  document.getElementById('profileName').textContent = DATA.name;
+  document.getElementById('profileTitle').textContent = DATA.title;
+  document.getElementById('profileLocation').textContent = DATA.location;
+  document.getElementById('aboutText').textContent = DATA.about;
+  document.getElementById('aboutSub').textContent = DATA.aboutSub;
+  document.getElementById('socialGithub').href = DATA.github;
+  document.getElementById('socialEmail').href = 'mailto:' + DATA.email;
+  document.getElementById('footerText').textContent = `2026 © ${DATA.name} — All rights reserved`;
+  document.getElementById('avatarEl').textContent = DATA.name.charAt(0).toUpperCase();
+
+  // Skills
+  const skillsRow = document.getElementById('skillsRow');
+  skillsRow.innerHTML = '';
+  DATA.skills.forEach(s => {
+    const t = document.createElement('span');
+    t.className = 'tag';
+    t.textContent = s;
+    skillsRow.appendChild(t);
+  });
+
+  // Projects
+  const grid = document.getElementById('projectsGrid');
+  grid.innerHTML = '';
+  const gradients = ['project-thumb-1','project-thumb-2','project-thumb-3'];
+  const emojis = ['🧠','🤖','🎨','💡','🌐'];
+  DATA.projects.forEach((p, i) => {
+    const card = document.createElement('div');
+    card.className = 'project-card';
+    const gClass = p.gradient || gradients[i % gradients.length];
+    const em = p.emoji || emojis[i % emojis.length];
+    card.innerHTML = `
+      <div class="project-thumb ${gClass}">${em}</div>
+      <div class="project-info">
+        <div class="project-title">${p.title}</div>
+        <div class="project-tech">${p.tech}</div>
+      </div>`;
+    grid.appendChild(card);
+  });
+
+  // Certs
+  const certsContainer = document.getElementById('certsContainer');
+  certsContainer.innerHTML = '';
+  DATA.certs.forEach(c => {
+    const item = document.createElement('div');
+    item.className = 'exp-item';
+    item.innerHTML = `<div style="color:var(--ink);font-size:14px;">${c.text}</div>`;
+    certsContainer.appendChild(item);
+  });
+
+  // Education
+  const eduTimeline = document.getElementById('eduTimeline');
+  eduTimeline.innerHTML = '';
+  DATA.education.forEach(e => {
+    const item = document.createElement('div');
+    item.className = 'edu-item';
+    item.innerHTML = `
+      <div class="edu-date">${e.date}</div>
+      <div>
+        <div class="edu-title">${e.title}</div>
+        <div class="edu-school">${e.school}</div>
+      </div>`;
+    eduTimeline.appendChild(item);
+  });
+
+  // Links
+  const leftCol = document.getElementById('caseStudiesCol');
+  const rightCol = document.getElementById('sideProjectsCol');
+  leftCol.innerHTML = '<div class="tags-label" style="margin-bottom:8px;">CASE STUDIES / PROFILES</div>';
+  rightCol.innerHTML = '<div class="tags-label" style="margin-bottom:8px;">AREAS OF INTEREST</div>';
+  DATA.links.forEach(l => {
+    const a = document.createElement('a');
+    a.className = 'link-item';
+    a.href = l.url || '#';
+    a.target = '_blank';
+    a.innerHTML = `<span>${l.label}</span><span class="link-badge">${l.badge || '↗'}</span>`;
+    (l.col === 'left' ? leftCol : rightCol).appendChild(a);
+  });
+}
+
+// ============================================================
+// ADMIN PANEL
+// ============================================================
+function openAdmin() {
+  loadAdminForm();
+  document.getElementById('admin-overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeAdmin() {
+  document.getElementById('admin-overlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function loadAdminForm() {
+  document.getElementById('a_name').value = DATA.name;
+  document.getElementById('a_title').value = DATA.title;
+  document.getElementById('a_location').value = DATA.location;
+  document.getElementById('a_email').value = DATA.email;
+  document.getElementById('a_github').value = DATA.github;
+  document.getElementById('a_about').value = DATA.about;
+  document.getElementById('a_aboutSub').value = DATA.aboutSub;
+
+  renderAdminSkills();
+  renderAdminProjects();
+  renderAdminCerts();
+  renderAdminEdu();
+  renderAdminLinks();
+}
+
+// --- Skills ---
+function renderAdminSkills() {
+  const list = document.getElementById('admin_skills_list');
+  list.innerHTML = '';
+  DATA.skills.forEach((s, i) => {
+    const tag = document.createElement('div');
+    tag.className = 'tag-admin';
+    tag.innerHTML = `${s}<button class="tag-admin-remove" onclick="removeSkill(${i})">×</button>`;
+    list.appendChild(tag);
+  });
+}
+function addSkill() {
+  const input = document.getElementById('a_skillInput');
+  const val = input.value.trim();
+  if (val) { DATA.skills.push(val); input.value = ''; renderAdminSkills(); }
+}
+function removeSkill(i) { DATA.skills.splice(i, 1); renderAdminSkills(); }
+
+// --- Projects ---
+function renderAdminProjects() {
+  const list = document.getElementById('admin_projects_list');
+  list.innerHTML = '';
+  DATA.projects.forEach((p, i) => {
+    const item = document.createElement('div');
+    item.className = 'project-admin-item';
+    item.innerHTML = `
+      <input class="admin-input" placeholder="Title" value="${p.title}" oninput="DATA.projects[${i}].title=this.value">
+      <input class="admin-input" placeholder="Tech stack" value="${p.tech}" oninput="DATA.projects[${i}].tech=this.value">
+      <input class="admin-input" placeholder="Emoji" value="${p.emoji||''}" style="width:80px;display:inline-block;" oninput="DATA.projects[${i}].emoji=this.value">
+      <button class="tag-add-btn" onclick="removeProject(${i})" style="background:#2e1a1a;border-color:#5a2d2d;color:#e8a4a4;margin-left:6px;">✕ Remove</button>`;
+    list.appendChild(item);
+  });
+}
+function addProject() {
+  DATA.projects.push({ title: "New Project", tech: "Tech stack", emoji: "💡", gradient: "project-thumb-1" });
+  renderAdminProjects();
+}
+function removeProject(i) { DATA.projects.splice(i, 1); renderAdminProjects(); }
+
+// --- Certs ---
+function renderAdminCerts() {
+  const list = document.getElementById('admin_certs_list');
+  list.innerHTML = '';
+  DATA.certs.forEach((c, i) => {
+    const item = document.createElement('div');
+    item.className = 'project-admin-item';
+    item.innerHTML = `
+      <textarea class="admin-textarea" style="min-height:50px;" oninput="DATA.certs[${i}].text=this.value">${c.text}</textarea>
+      <button class="tag-add-btn" onclick="removeCert(${i})" style="background:#2e1a1a;border-color:#5a2d2d;color:#e8a4a4;margin-top:4px;width:100%;">✕ Remove</button>`;
+    list.appendChild(item);
+  });
+}
+function addCert() { DATA.certs.push({ text: "New Certificate" }); renderAdminCerts(); }
+function removeCert(i) { DATA.certs.splice(i, 1); renderAdminCerts(); }
+
+// --- Education ---
+function renderAdminEdu() {
+  const list = document.getElementById('admin_edu_list');
+  list.innerHTML = '';
+  DATA.education.forEach((e, i) => {
+    const item = document.createElement('div');
+    item.className = 'project-admin-item';
+    item.innerHTML = `
+      <input class="admin-input" placeholder="Date (e.g. 2023–2026)" value="${e.date}" oninput="DATA.education[${i}].date=this.value">
+      <input class="admin-input" placeholder="Degree / Program" value="${e.title}" oninput="DATA.education[${i}].title=this.value">
+      <input class="admin-input" placeholder="Institution" value="${e.school}" oninput="DATA.education[${i}].school=this.value">
+      <button class="tag-add-btn" onclick="removeEdu(${i})" style="background:#2e1a1a;border-color:#5a2d2d;color:#e8a4a4;margin-top:4px;width:100%;">✕ Remove</button>`;
+    list.appendChild(item);
+  });
+}
+function addEdu() { DATA.education.push({ date: "Year", title: "Degree", school: "Institution" }); renderAdminEdu(); }
+function removeEdu(i) { DATA.education.splice(i, 1); renderAdminEdu(); }
+
+// --- Links ---
+function renderAdminLinks() {
+  const list = document.getElementById('admin_links_list');
+  list.innerHTML = '';
+  DATA.links.forEach((l, i) => {
+    const item = document.createElement('div');
+    item.className = 'project-admin-item';
+    item.innerHTML = `
+      <input class="admin-input" placeholder="Label" value="${l.label}" oninput="DATA.links[${i}].label=this.value">
+      <input class="admin-input" placeholder="URL" value="${l.url||'#'}" oninput="DATA.links[${i}].url=this.value">
+      <input class="admin-input" placeholder="Badge text" value="${l.badge||''}" style="width:120px;display:inline-block;" oninput="DATA.links[${i}].badge=this.value">
+      <select class="admin-input" style="width:100px;display:inline-block;margin-left:6px;" onchange="DATA.links[${i}].col=this.value">
+        <option value="left" ${l.col==='left'?'selected':''}>Left col</option>
+        <option value="right" ${l.col!=='left'?'selected':''}>Right col</option>
+      </select>
+      <button class="tag-add-btn" onclick="removeLink(${i})" style="background:#2e1a1a;border-color:#5a2d2d;color:#e8a4a4;margin-top:4px;width:100%;">✕ Remove</button>`;
+    list.appendChild(item);
+  });
+}
+function addLink() { DATA.links.push({ label: "New Link", url: "#", badge: "↗", col: "right" }); renderAdminLinks(); }
+function removeLink(i) { DATA.links.splice(i, 1); renderAdminLinks(); }
+
+// --- SAVE ---
+function saveAll() {
+  DATA.name = document.getElementById('a_name').value;
+  DATA.title = document.getElementById('a_title').value;
+  DATA.location = document.getElementById('a_location').value;
+  DATA.email = document.getElementById('a_email').value;
+  DATA.github = document.getElementById('a_github').value;
+  DATA.about = document.getElementById('a_about').value;
+  DATA.aboutSub = document.getElementById('a_aboutSub').value;
+
+  saveData();
+  render();
+
+  const status = document.getElementById('admin-status');
+  status.textContent = '✓ Saved successfully';
+  setTimeout(() => status.textContent = '', 2000);
+}
+
+// ============================================================
+// ROUTE /admin
+// ============================================================
+function checkRoute() {
+  // Open admin if URL contains /admin or ?admin or #admin
+  const path = window.location.pathname + window.location.search + window.location.hash;
+  if (path.includes('/admin') || path.includes('?admin') || path.includes('#admin')) {
+    setTimeout(openAdmin, 300);
+  }
+}
+
+// Keyboard shortcut: Ctrl+Shift+A
+document.addEventListener('keydown', e => {
+  if (e.ctrlKey && e.shiftKey && e.key === 'A') openAdmin();
+});
+
+// Click outside to close
+document.getElementById('admin-overlay').addEventListener('click', function(e) {
+  if (e.target === this) closeAdmin();
+});
+
+// ============================================================
+// INIT
+// ============================================================
+loadData();
+render();
+checkRoute();
+</script>
+</body>
+</html>
